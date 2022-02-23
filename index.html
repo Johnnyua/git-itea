@@ -64,7 +64,7 @@
             var comandForShowTeam;
             for (var key in object) {
                 if (Object.hasOwnProperty.call(object, key)) {
-                    if ("1" in object[key] && "position" in object[key] && "salary" in object[key]) {
+                    if ("name" in object[key] && "position" in object[key] && "salary" in object[key]) {
                         object[key][nameNestedMethod] = function () { document.write('Меня зовут ' + this.name + ' и я - ' + this.position + '. Я зарабатываю ' + this.salary + '$.') }
                         comandForShowTeam += console.log(object[key].name + ' - ' + object[key].position + '. ' + 'Зарплата - ' + object[key].salary + '$.');
                     } else {
