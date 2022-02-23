@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        'use strict';
+
+        var arrayOfPositions = ['Junior developer', 'Middle developer', 'Senior developer', 'Junior QA', 'Middle QA', 'Senior QA', 'Project manager'];
+        var arrayOfNames = [];
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getNames() {
+            var arrayNumbersInWords = ['первое', 'второе', 'третье', 'четвертое', 'пятое', 'шестое', 'седьмое'];
+            for (var i = 0; i < arrayOfPositions.length; i++) {
+                var name = prompt('Укажите ' + arrayNumbersInWords[i] + ' имя пользователя:')
+                arrayOfNames[i] = name;
+            }
+        }
+
+        getNames();
+
+        var team = {};
+        function createTeam(arrayName, arrayPos, object, nestedObject) {
+            for (var i = 0; i < arrayPos.length; i++) {
+                var key = nestedObject + (i + 1);
+                object[key] = new Object();
+                object[key].name = arrayName[i];
+                object[key].position = arrayPos[i];
+            }
+
+        }
+
+        createTeam(arrayOfNames, arrayOfPositions, team, 'employees');
+
+
+
+        function setSalary(object) {
+            for (var key in object) {
+                if ("position" in object[key]) {
+                    var pos = object[key].position.toLowerCase();
+                    if (pos.indexOf('junior') !== -1) {
+                        object[key].salary = getRandomInt(500, 1000);
+                    } else if (pos.indexOf('middle') !== -1) {
+                        object[key].salary = getRandomInt(1500, 2000);
+                    } else if (pos.indexOf('senior') !== -1) {
+                        object[key].salary = getRandomInt(2500, 3000);
+                    } else {
+                        object[key].salary = getRandomInt(4000, 4500);
+                    }
+
+                }
+
+            }
+        }
+
+
+        setSalary(team);
+
+        function setMethodToNestedObject(object, nameMethod, nameNestedMethod) {
+            var comandForShowTeam;
+            for (var key in object) {
+                if (Object.hasOwnProperty.call(object, key)) {
+                    object[key][nameNestedMethod] = function () { document.write('Меня зовут ' + this.name + ' и я - ' + this.position + '. Я зарабатываю ' + this.salary + '$.') }
+                    comandForShowTeam += console.log(object[key].name + ' - ' + object[key].position + '. ' + 'Зарплата - ' + object[key].salary + '$.');
+                }
+            }
+            object[nameMethod] = function() {comandForShowTeam};
+        }
+
+        setMethodToNestedObject(team, 'showTeam', 'tellAboutYourSelf');
+
+        team.showTeam();
+        
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
