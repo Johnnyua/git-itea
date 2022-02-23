@@ -39,8 +39,6 @@
 
         createTeam(arrayOfNames, arrayOfPositions, team, 'employees');
 
-
-
         function setSalary(object) {
             for (var key in object) {
                 if ("position" in object[key]) {
@@ -60,7 +58,6 @@
             }
         }
 
-
         setSalary(team);
 
         function setMethodToNestedObject(object, nameMethod, nameNestedMethod) {
@@ -71,14 +68,12 @@
                     comandForShowTeam += console.log(object[key].name + ' - ' + object[key].position + '. ' + 'Зарплата - ' + object[key].salary + '$.');
                 }
             }
-            object[nameMethod] = function() {comandForShowTeam};
+            object[nameMethod] = function () { comandForShowTeam };
         }
 
         setMethodToNestedObject(team, 'showTeam', 'tellAboutYourSelf');
 
         team.showTeam();
-        
-
 
     </script>
 </head>
