@@ -1,2 +1,2 @@
 # git-itea
-hello
+JavaScript Base Project
