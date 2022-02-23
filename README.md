@@ -1,2 +1,2 @@
-# git-itea
+# git-itea-js-base
 JavaScript Base Project
